@@ -12,8 +12,8 @@ use Nextras\Orm\Entity\Entity;
  * @property int                    $id        {primary}
  * @property String                 $nazev       
  * @property Town                   $mesto     {m:1 Town::$skola}  
- * @property double                 $geo-lat        
- * @property double                 $geo-long       
+ * @property double                 $glat        
+ * @property double                 $glong       
  */
 class School extends Entity
 {

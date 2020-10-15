@@ -21,7 +21,7 @@ final class HomepagePresenter extends Nette\Application\UI\Presenter
 
     /**  
      * @var String
-     * Helper variable, just to translate
+     * Variable to store information about sorting
      */
     private String $sort = 'school-ASC';
 

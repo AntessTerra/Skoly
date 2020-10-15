@@ -43,4 +43,21 @@
            
         {/foreach}
     </table>
+    
+    <h1 class="mt-5 mb-5">Mapa</h1>
+
+    <div id="mapid"></div>
+    
 </div>
+
+<link rel="stylesheet" href="css/map.css">
+<script src="js/map.js"></script>
+
+{foreach $schools as $school}
+    {var $lat = $school->glat}
+    {var $long = $school->glong}
+    <script>
+        var popup = L.marker([{$lat}, {$long}]).addTo(mymap);
+       popup.bindPopup('<b>{$school->nazev}</b><br>{$school->mesto->nazev}');
+    </script>
+{/foreach}
