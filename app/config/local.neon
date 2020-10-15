@@ -1,0 +1,13 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;dbname=skoly'
+	user: 'root'
+	password:
+dbal:
+	driver: mysqli
+	host: 127.0.0.1
+	database: skoly
+	username: root
+	password: 

@@ -1,0 +1,46 @@
+{block content}
+<div class="container jumbotron">
+    <h1 class="mt-5 mb-5">Školy</h1>
+    <table style="width:100%">
+        <tr>
+            {switch ($column)}
+                {case "school"}
+                    {switch ($direction)}
+                        {case "ASC"}
+                            {var $sortschool = 'school-DESC'}
+                            <th><a n:href="Sort! $sortschool">Název <i class="fas fa-sort-up"></i></a></th>
+                            {var $sorttown = 'town-ASC'}
+                            <th><a n:href="Sort! $sorttown">Město <i class="fas fa-sort"></i></a></th>
+                        {case "DESC"}
+                            {var $sortschool = 'school-ASC'}
+                            <th><a n:href="Sort! $sortschool">Název <i class="fas fa-sort-down"></i></a></th>
+                            {var $sorttown = 'town-ASC'}
+                            <th><a n:href="Sort! $sorttown">Město <i class="fas fa-sort"></i></a></th>
+                    {/switch}
+                {case "town"}
+                    {switch ($direction)}
+                        {case "ASC"}
+                            {var $sortschool = 'school-ASC'}
+                            <th><a n:href="Sort! $sortschool">Název <i class="fas fa-sort"></i></a></th>
+                            {var $sorttown = 'town-DESC'}
+                            <th><a n:href="Sort! $sorttown">Město <i class="fas fa-sort-up"></i></a></th>
+                        {case "DESC"}
+                            {var $sortschool = 'school-ASC'}
+                            <th><a n:href="Sort! $sortschool">Název <i class="fas fa-sort"></i></a></th>
+                            {var $sorttown = 'town-ASC'}
+                            <th><a n:href="Sort! $sorttown">Město <i class="fas fa-sort-down"></i></a></th>
+                    {/switch}
+            {/switch}
+        </tr>
+
+        {foreach $schools as $school}
+
+            <tr>
+                <td>{$school->nazev}</td>
+                <td>{$school->mesto->nazev}</td>
+                
+            </tr>
+           
+        {/foreach}
+    </table>
+</div>

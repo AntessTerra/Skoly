@@ -1,0 +1,26 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+orm:
+	model: MyOrm\Orm
+
+di:
+	export:
+		parameters: no
+		tags: no
+
+extensions:
+	dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+	orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+
+services:
+	router: App\Router\RouterFactory::createRouter
