@@ -14,6 +14,8 @@ use Nextras\Orm\Entity\Entity;
  * @property Town                   $mesto     {m:1 Town::$skola}  
  * @property double                 $glat        
  * @property double                 $glong       
+ * @property OneHasMany|Accept[]    $prijatych     {1:m Accept::$skola}
+ * 
  */
 class School extends Entity
 {

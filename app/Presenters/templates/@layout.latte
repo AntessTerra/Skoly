@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.3.1/flatly/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	
   	<link rel="icon" href="https://static.thenounproject.com/png/1853608-200.png">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -25,7 +26,37 @@
 </head>
 
 <body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" n:href="Homepage:default">Školy</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				{if $user->loggedIn}
+					<li class="nav-item">
+						<a class="nav-link" n:href="Homepage:schoolAdd"><i class="fas fa-school"></i> Přidat školu</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" n:href="Homepage:acceptAdd"><i class="fas fa-graduation-cap"></i> Přidat přijaté studenty</a>
+					</li>
+				{/if}
+			</ul>
+				{if $user->loggedIn}
+					<a style="color:white">Přihlášený uživatel: {$user->id}</a>
+					|
+					<a n:href="Sign:out">Odhlásit</a>
+				{else}
+					<a n:href="Sign:in">Přihlásit</a>
+				{/if}
+		</div>
+	</nav>
+
 	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+	
 
 	{include content}
 

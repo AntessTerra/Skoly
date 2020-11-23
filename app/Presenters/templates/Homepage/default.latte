@@ -1,8 +1,16 @@
 {block content}
 <div class="container jumbotron">
     <h1 class="mt-5 mb-5">Školy</h1>
-    <table style="width:100%">
-        <tr>
+    {if $user->loggedIn == false}
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"> 
+        Filtrovat <i class="fas fa-filter"></i>
+    </a>
+    
+    <div class="collapse" id="collapseExample">
+        {control filterForm}
+    </div>
+    <table class="table mt-3" style="width:100%">
+        <thead class="thead-dark">
             {switch ($column)}
                 {case "school"}
                     {switch ($direction)}
@@ -31,14 +39,40 @@
                             <th><a n:href="Sort! $sorttown">Město <i class="fas fa-sort-down"></i></a></th>
                     {/switch}
             {/switch}
-        </tr>
-
+            {foreach $acceptsYears as $acceptYear}
+                {default $lastYear}
+                    {if ($lastYear != $acceptYear->rok)}
+                        <th style="text-align: center" colspan="2">{$acceptYear->rok}</th>
+                    {/if}
+                {var $lastYear = $acceptYear->rok}
+            {/foreach}
+        </thead>
+        
         {foreach $schools as $school}
-
+        {var ${$school->id} = "it"}
             <tr>
                 <td>{$school->nazev}</td>
                 <td>{$school->mesto->nazev}</td>
-                
+                {foreach $accepts as $accept}
+                    {if ($accept->skola->id == $school->id)}
+                        {if ($accept->obor->id == 1)}
+                            <td style="text-align: center">OA: {$accept->pocet}</td>
+                            {var ${$school->id} = "oa"}
+                        
+                        {/if}
+                        {if ($accept->obor->id == 2)}
+                           
+                            {if (${$school->id} == "oa")}
+                                <td style="text-align: center">IT: {$accept->pocet}</td>
+                            {else}
+                                <td></td>   
+                                <td style="text-align: center">IT: {$accept->pocet}</td>
+                            {/if}
+                            
+                        {/if}
+                    {/if}
+                    
+                {/foreach}
             </tr>
            
         {/foreach}
@@ -49,6 +83,12 @@
     <div id="mapid"></div>
     
 </div>
+
+{else}
+
+    <p>Vítejte v řežimu editace záznamů</p>
+
+{/if}
 
 <link rel="stylesheet" href="css/map.css">
 <script src="js/map.js"></script>

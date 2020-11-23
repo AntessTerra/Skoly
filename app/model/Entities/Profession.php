@@ -7,13 +7,13 @@ use Nextras\Orm\Entity\Entity;
 
 
 /**
- * Town
+ * Profession
  *
  * @property int                    $id        {primary}
  * @property String                 $nazev       
- * @property OneHasMany|School[]    $skola     {1:m School::$mesto}
- * 
+ * @property OneHasMany|Accept[]    $prijatych {1:m Accept::$obor}
+ *  
  */
-class Town extends Entity
+class Profession extends Entity
 {
 }
